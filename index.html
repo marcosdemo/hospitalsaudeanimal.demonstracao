@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Saúde Animal | Pronto Atendimento Veterinário 24h Sorocaba</title>
+    <meta name="description" content="Hospital Veterinário 24 Horas em Sorocaba. Centro cirúrgico completo, internação com 50 baias, exames de radiologia, ultrassom e equipe altamente qualificada.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js (Para Interatividade e Animações de Abas) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- AOS (Animate On Scroll Library) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Google Fonts: Inter e Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            teal: '#0d9488',
+                            tealDark: '#0f766e',
+                            tealLight: '#ccfbf1',
+                            navy: '#0f172a',
+                            slate: '#334155',
+                            softGray: '#f8fafc',
+                            emerald: '#10b981',
+                            rose: '#f43f5e'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pulse Animation para Botão de Emergência 24h */
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(244, 63, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+        }
+        .animate-emergency {
+            animation: pulse-red 2s infinite;
+        }
+        
+        /* Glassmorphism e Transições Clean */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="font-sans text-brand-slate bg-brand-softGray antialiased selection:bg-brand-teal selection:text-white" x-data="{ mobileMenuOpen: false }">
+
+    <!-- Top Bar de Urgência -->
+    <div class="bg-brand-navy text-white text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-brand-rose text-white uppercase tracking-wider animate-pulse">
+                    <i class="fa-solid fa-circle text-[6px] mr-1"></i> Plantão 24 Horas
+                </span>
+                <span class="text-slate-300 hidden md:inline">| Av. Gal. Carneiro, 2093 - Cerrado, Sorocaba - SP</span>
+            </div>
+            <div class="flex items-center gap-4 font-medium text-slate-200">
+                <a href="tel:1530311066" class="hover:text-brand-teal transition-colors"><i class="fa-solid fa-phone text-brand-teal mr-1"></i> (15) 3031-1066</a>
+                <a href="tel:1530167868" class="hover:text-brand-teal transition-colors"><i class="fa-solid fa-phone text-brand-teal mr-1"></i> (15) 3016-7868</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Nav Moderno -->
+    <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo Clean -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 bg-brand-teal text-white rounded-xl flex items-center justify-center shadow-lg shadow-teal-500/20 group-hover:bg-brand-tealDark transition-all">
+                        <i class="fa-solid fa-heart-pulse text-2xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-extrabold text-xl text-brand-navy leading-none tracking-tight">HOSPITAL</span>
+                        <span class="text-xs font-bold text-brand-teal tracking-widest uppercase">Saúde Animal</span>
+                    </div>
+                </a>
+
+                <!-- Nav Links Desktop -->
+                <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-600">
+                    <a href="#apresentacao" class="hover:text-brand-teal transition-colors">Apresentação</a>
+                    <a href="#estrutura" class="hover:text-brand-teal transition-colors">Estrutura Completa</a>
+                    <a href="#equipe" class="hover:text-brand-teal transition-colors">Corpo Clínico</a>
+                    <a href="#petshop" class="hover:text-brand-teal transition-colors">Pet Shop & Farmácia</a>
+                    <a href="#guia-pet" class="hover:text-brand-teal transition-colors">Dicas ao Tutor</a>
+                </nav>
+
+                <!-- CTA Principal -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="tel:1530311066" class="bg-brand-rose text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all hover:bg-rose-600 flex items-center animate-emergency">
+                        <i class="fa-solid fa-phone-volume mr-2"></i> Emergência 24h
+                    </a>
+                </div>
+
+                <!-- Botão Menu Mobile -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-slate-700 hover:text-brand-teal p-2 focus:outline-none">
+                    <i class="fa-solid" :class="mobileMenuOpen ? 'fa-xmark text-2xl' : 'fa-bars text-2xl'"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Expandível -->
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#apresentacao" @click="mobileMenuOpen = false" class="block py-2 text-slate-700 font-medium hover:text-brand-teal">Apresentação</a>
+            <a href="#estrutura" @click="mobileMenuOpen = false" class="block py-2 text-slate-700 font-medium hover:text-brand-teal">Estrutura HSA</a>
+            <a href="#equipe" @click="mobileMenuOpen = false" class="block py-2 text-slate-700 font-medium hover:text-brand-teal">Equipe Médica</a>
+            <a href="#petshop" @click="mobileMenuOpen = false" class="block py-2 text-slate-700 font-medium hover:text-brand-teal">Pet Shop & Farmácia</a>
+            <a href="#guia-pet" @click="mobileMenuOpen = false" class="block py-2 text-slate-700 font-medium hover:text-brand-teal">Guia de Cuidados</a>
+            <a href="tel:1530311066" class="block text-center bg-brand-rose text-white py-3 rounded-xl font-bold">Ligar para Plantão 24h</a>
+        </div>
+    </header>
+
+    <!-- Hero Section Clean e Interativo -->
+    <section id="apresentacao" class="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden bg-gradient-to-b from-teal-50/50 via-white to-brand-softGray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Coluna de Texto -->
+                <div class="lg:col-span-7 text-center lg:text-left" data-aos="fade-right" data-aos-duration="800">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-100/80 text-brand-tealDark text-xs font-bold mb-6">
+                        <i class="fa-solid fa-shield-cat"></i> Tradição e Excelência desde Julho de 2011
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-navy leading-tight tracking-tight mb-6">
+                        Medicina veterinária avançada com o <span class="text-brand-teal">carinho que seu pet merece.</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Fundado para suprir a demanda de alta complexidade em Sorocaba e região, o Hospital Saúde Animal oferece pronto atendimento 24 horas, suporte cirúrgico duplo e centro de diagnósticos integrados.
+                    </p>
+
+                    <!-- Ações Rápidas -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="tel:1530311066" class="bg-brand-teal hover:bg-brand-tealDark text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-teal-500/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-center">
+                            <i class="fa-solid fa-phone text-lg mr-2 font-normal"></i> Ligar: (15) 3031-1066
+                        </a>
+                        <a href="#estrutura" class="bg-white border border-slate-200 text-brand-navy hover:bg-slate-50 px-8 py-4 rounded-xl font-semibold transition-all shadow-sm flex items-center justify-center">
+                            Explorar Estrutura <i class="fa-solid fa-arrow-down-long ml-2 text-brand-teal"></i>
+                        </a>
+                    </div>
+
+                    <!-- Métricas / Números Organizados -->
+                    <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-slate-200/80">
+                        <div class="text-center lg:text-left">
+                            <span class="block text-3xl font-extrabold text-brand-navy">24h</span>
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Pronto Socorro</span>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <span class="block text-3xl font-extrabold text-brand-navy">15+</span>
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Especialistas</span>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <span class="block text-3xl font-extrabold text-brand-navy">50</span>
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Baias de Internação</span>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <span class="block text-3xl font-extrabold text-brand-navy">2</span>
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Cirurgias Simultâneas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna de Imagem / Card Interativo -->
+                <div class="lg:col-span-5 relative" data-aos="fade-left" data-aos-duration="800">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="absolute -inset-2 bg-gradient-to-r from-brand-teal to-emerald-400 rounded-3xl blur-xl opacity-20 animate-pulse"></div>
+                        <div class="relative bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
+                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Veterinário atendendo pet com tecnologia" class="w-full h-72 object-cover">
+                            
+                            <div class="p-6 bg-white space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-brand-teal">
+                                        <i class="fa-solid fa-heart-circle-check text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-brand-navy text-sm">Compromisso com o Bem-Estar</h4>
+                                        <p class="text-xs text-slate-500">Restabelecer a saúde e trazer alegria às famílias.</p>
+                                    </div>
+                                </div>
+
+                                <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-600 flex justify-between items-center">
+                                    <span><i class="fa-solid fa-location-dot text-brand-teal mr-1"></i> Av. Gal. Carneiro, 2093</span>
+                                    <span class="font-bold text-brand-teal">Sorocaba - SP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Estrutura Completa HSA (Sistema de Abas Interativas) -->
+    <section id="estrutura" class="py-20 bg-white border-y border-slate-200/80" x-data="{ tab: 'cirurgico' }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
+                <span class="text-xs font-extrabold tracking-widest text-brand-teal uppercase">Infraestrutura Hospitalar</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy mt-2">Estrutura Projetada para Alta Complexidade</h2>
+                <p class="text-slate-600 mt-3">Tudo o que uma instituição médica veterinária de excelência precisa ter, organizado por setores especializados.</p>
+            </div>
+
+            <!-- Botões das Abas -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up" data-aos-delay="100">
+                <button @click="tab = 'cirurgico'" :class="tab === 'cirurgico' ? 'bg-brand-teal text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'" class="px-5 py-3 rounded-xl font-semibold text-sm transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-syringe"></i> Centro Cirúrgico
+                </button>
+                <button @click="tab = 'consultorios'" :class="tab === 'consultorios' ? 'bg-brand-teal text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'" class="px-5 py-3 rounded-xl font-semibold text-sm transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-stethoscope"></i> Consultórios & Terapias
+                </button>
+                <button @click="tab = 'diagnostico'" :class="tab === 'diagnostico' ? 'bg-brand-teal text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'" class="px-5 py-3 rounded-xl font-semibold text-sm transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-microscope"></i> Exames & Diagnósticos
+                </button>
+                <button @click="tab = 'internacao'" :class="tab === 'internacao' ? 'bg-brand-teal text-white shadow-md' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'" class="px-5 py-3 rounded-xl font-semibold text-sm transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-bed-pulse"></i> Internação & Suporte
+                </button>
+            </div>
+
+            <!-- Conteúdo das Abas (Organização Limpa) -->
+            <div class="bg-brand-softGray rounded-3xl p-8 border border-slate-200/80 min-h-[300px]" data-aos="fade-up" data-aos-delay="200">
+                
+                <!-- Tab: Cirúrgico -->
+                <div x-show="tab === 'cirurgico'" x-transition:enter="transition ease-out duration-300 opacity-0 transform translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="w-12 h-12 bg-teal-100 text-brand-teal rounded-2xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-hospital-user"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">Amplo Centro Cirúrgico</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Equipado com aparelhos modernos para anestesia inalatória avançada, preparado para realizar até 2 procedimentos cirúrgicos simultâneos com total segurança cirúrgica e anestésica.
+                        </p>
+                        <ul class="space-y-2 text-sm text-slate-700 font-medium">
+                            <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-teal mr-2"></i> Anestesia Inalatória Computadorizada</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-teal mr-2"></i> Capacidade para 2 cirurgias simultâneas</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-teal mr-2"></i> Sala de Recuperação Pós-Cirúrgica dedicada</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-teal mr-2"></i> Central de Preparo e Esterilização de Materiais</li>
+                        </ul>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                        <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Centro Cirúrgico Veterinário" class="w-full h-64 object-cover">
+                    </div>
+                </div>
+
+                <!-- Tab: Consultórios -->
+                <div x-show="tab === 'consultorios'" x-transition:enter="transition ease-out duration-300 opacity-0 transform translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="w-12 h-12 bg-teal-100 text-brand-teal rounded-2xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">Recepção, Consultórios e Terapias</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Estrutura planejada para evitar estresse animal, com recepção ampla e salas reservadas para especialidades terapêuticas.
+                        </p>
+                        <div class="grid grid-cols-2 gap-3 text-sm font-medium text-slate-700">
+                            <div class="p-3 bg-white rounded-xl border border-slate-200"><i class="fa-solid fa-door-open text-brand-teal mr-2"></i> 7 Consultórios Médicos</div>
+                            <div class="p-3 bg-white rounded-xl border border-slate-200"><i class="fa-solid fa-hand-holding-medical text-brand-teal mr-2"></i> Acupuntura & Fluidoterapia</div>
+                            <div class="p-3 bg-white rounded-xl border border-slate-200"><i class="fa-solid fa-person-walking text-brand-teal mr-2"></i> Fisioterapia Veterinária</div>
+                            <div class="p-3 bg-white rounded-xl border border-slate-200"><i class="fa-solid fa-tooth text-brand-teal mr-2"></i> Odontologia Veterinária</div>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                        <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Consultório Veterinário" class="w-full h-64 object-cover">
+                    </div>
+                </div>
+
+                <!-- Tab: Diagnóstico -->
+                <div x-show="tab === 'diagnostico'" x-transition:enter="transition ease-out duration-300 opacity-0 transform translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="w-12 h-12 bg-teal-100 text-brand-teal rounded-2xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-x-ray"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">Exames de Imagem e Laboratório Próprio</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Agilidade em laudos e diagnósticos precisos diretamente na instituição para suporte imediato às tomadas de decisão.
+                        </p>
+                        <ul class="space-y-2 text-sm text-slate-700 font-medium">
+                            <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-teal mr-2"></i> 1 Sala de Radiologia Digital</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-teal mr-2"></i> 1 Sala de Ultrassonografia de Alta Resolução</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-teal mr-2"></i> Laboratório Clínico Integrado para análises rápidas</li>
+                        </ul>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                        <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Exame Laboratorial Veterinário" class="w-full h-64 object-cover">
+                    </div>
+                </div>
+
+                <!-- Tab: Internação -->
+                <div x-show="tab === 'internacao'" x-transition:enter="transition ease-out duration-300 opacity-0 transform translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="w-12 h-12 bg-teal-100 text-brand-teal rounded-2xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">Internação Monitorada e Suporte Suporte 24h</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Acompanhamento ininterrupto com médicos veterinários plantonistas residentes nos alojamentos da própria unidade.
+                        </p>
+                        <ul class="space-y-2 text-sm text-slate-700 font-medium">
+                            <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-teal mr-2"></i> 4 Salas de Internação individualizadas</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-teal mr-2"></i> Total de 50 baias limpas e climatizadas</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-teal mr-2"></i> Lavanderia própria e rigoroso protocolo de higiene</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check-circle text-brand-teal mr-2"></i> Alojamentos exclusivos para médicos plantonistas</li>
+                        </ul>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                        <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Internação Veterinária" class="w-full h-64 object-cover">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipe Médica Organizada em Grid Clean -->
+    <section id="equipe" class="py-20 bg-brand-softGray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-xs font-extrabold tracking-widest text-brand-teal uppercase">Corpo Clínico HSA</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy mt-2">Médicos Veterinários Especialistas</h2>
+                <p class="text-slate-600 mt-3">Profissionais altamente gabaritados em constante atualização científica, amparados por uma dedicada equipe de técnicos, manutenção e administração.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Card Doutor 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-teal-50 text-brand-teal rounded-2xl flex items-center justify-center text-xl font-bold mb-4 group-hover:bg-brand-teal group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-navy">Dr. Roberto Comitre</h3>
+                    <p class="text-xs font-semibold text-brand-teal mt-1">CRMV-SP 6457</p>
+                    <p class="text-xs text-slate-500 mt-2">Corpo Clínico Principal</p>
+                </div>
+
+                <!-- Card Doutor 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group" data-aos="fade-up" data-aos-delay="150">
+                    <div class="w-14 h-14 bg-teal-50 text-brand-teal rounded-2xl flex items-center justify-center text-xl font-bold mb-4 group-hover:bg-brand-teal group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-navy">Dr. Joelmir A. Jardim</h3>
+                    <p class="text-xs font-semibold text-brand-teal mt-1">CRMV-SP 14144</p>
+                    <p class="text-xs text-slate-500 mt-2">Corpo Clínico Principal</p>
+                </div>
+
+                <!-- Card Doutor 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-teal-50 text-brand-teal rounded-2xl flex items-center justify-center text-xl font-bold mb-4 group-hover:bg-brand-teal group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-navy">Dr. Joelson A. Jardim</h3>
+                    <p class="text-xs font-semibold text-brand-teal mt-1">CRMV-SP 9185</p>
+                    <p class="text-xs text-slate-500 mt-2">Corpo Clínico Principal</p>
+                </div>
+
+                <!-- Card Doutora 4 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group" data-aos="fade-up" data-aos-delay="250">
+                    <div class="w-14 h-14 bg-teal-50 text-brand-teal rounded-2xl flex items-center justify-center text-xl font-bold mb-4 group-hover:bg-brand-teal group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-navy">Dra. Marcela G. Souza</h3>
+                    <p class="text-xs font-semibold text-brand-teal mt-1">CRMV-SP 15922</p>
+                    <p class="text-xs text-slate-500 mt-2">Corpo Clínico Principal</p>
+                </div>
+
+                <!-- Card Doutora 5 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-teal-50 text-brand-teal rounded-2xl flex items-center justify-center text-xl font-bold mb-4 group-hover:bg-brand-teal group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-navy">Dra. Luciana Sandei</h3>
+                    <p class="text-xs font-semibold text-brand-teal mt-1">CRMV-SP 10881</p>
+                    <p class="text-xs text-slate-500 mt-2">Corpo Clínico Principal</p>
+                </div>
+
+                <!-- Card Doutor 6 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group" data-aos="fade-up" data-aos-delay="350">
+                    <div class="w-14 h-14 bg-teal-50 text-brand-teal rounded-2xl flex items-center justify-center text-xl font-bold mb-4 group-hover:bg-brand-teal group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-navy">Dr. Robson Uehara</h3>
+                    <p class="text-xs font-semibold text-brand-teal mt-1">CRMV-SP 25917</p>
+                    <p class="text-xs text-slate-500 mt-2">Corpo Clínico Principal</p>
+                </div>
+
+                <!-- Card Doutor 7 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-14 h-14 bg-teal-50 text-brand-teal rounded-2xl flex items-center justify-center text-xl font-bold mb-4 group-hover:bg-brand-teal group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-navy">Dr. Marcos Bruder</h3>
+                    <p class="text-xs font-semibold text-brand-teal mt-1">CRMV-SP 13138</p>
+                    <p class="text-xs text-slate-500 mt-2">Corpo Clínico Principal</p>
+                </div>
+
+                <!-- Card Bióloga 8 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group" data-aos="fade-up" data-aos-delay="450">
+                    <div class="w-14 h-14 bg-teal-50 text-brand-teal rounded-2xl flex items-center justify-center text-xl font-bold mb-4 group-hover:bg-brand-teal group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-vial-circle-check"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-navy">Dra. Renata M. Oliveira</h3>
+                    <p class="text-xs font-semibold text-brand-teal mt-1">CRBio 82114/01-D</p>
+                    <p class="text-xs text-slate-500 mt-2">Análises Clínicas e Biologia</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pet Shop e Farmácia -->
+    <section id="petshop" class="py-20 bg-white border-t border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <span class="text-xs font-extrabold tracking-widest text-brand-teal uppercase">Conveniência Integrada</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy mt-2 mb-6">Nosso Pet Shop & Farmácia Veterinária</h2>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        Dispõe de uma seleção rigorosa de alimentos das melhores marcas do mercado, linha completa de produtos para beleza e higienização, acessórios e uma farmácia veterinária com todos os medicamentos prescritos pelos nossos médicos.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 text-sm font-semibold text-brand-navy">
+                        <div class="flex items-center gap-2 p-3 bg-brand-softGray rounded-xl"><i class="fa-solid fa-pills text-brand-teal"></i> Farmácia Completa</div>
+                        <div class="flex items-center gap-2 p-3 bg-brand-softGray rounded-xl"><i class="fa-solid fa-bone text-brand-teal"></i> Rações Super Premium</div>
+                        <div class="flex items-center gap-2 p-3 bg-brand-softGray rounded-xl"><i class="fa-solid fa-pump-soap text-brand-teal"></i> Higienização e Estética</div>
+                        <div class="flex items-center gap-2 p-3 bg-brand-softGray rounded-xl"><i class="fa-solid fa-paw text-brand-teal"></i> Acessórios em Geral</div>
+                    </div>
+                </div>
+                <div class="relative" data-aos="fade-left">
+                    <div class="rounded-3xl overflow-hidden shadow-xl border border-slate-200">
+                        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pet Shop e Farmácia Veterinária" class="w-full h-80 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orientação ao Tutor (Acordeão Clean e Sanfona Interativa) -->
+    <section id="guia-pet" class="py-20 bg-brand-softGray" x-data="{ openFaq: 1 }">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <span class="text-xs font-extrabold tracking-widest text-brand-teal uppercase">Guia do Tutor Responsável</span>
+                <h2 class="text-3xl font-extrabold text-brand-navy mt-2">Dicas de Saúde e Posse Responsável</h2>
+            </div>
+
+            <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
+                
+                <!-- Acordeão 1: Cuidados Diários -->
+                <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm">
+                    <button @click="openFaq = (openFaq === 1 ? null : 1)" class="w-full px-6 py-5 text-left font-bold text-brand-navy flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-heart-pulse text-brand-teal"></i> Cuidados para o seu bichinho (Saúde Física e Psicológica)</span>
+                        <i class="fa-solid text-slate-400" :class="openFaq === 1 ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </button>
+                    <div x-show="openFaq === 1" x-collapse class="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                        A saúde física do seu animal é fundamental. Leve-o regularmente ao veterinário, fique atento aos remédios, vacine-o corretamente e forneça abrigo e alimento de qualidade. Zele também pela saúde psicológica do seu pet: ela é tão importante quanto a física. Dê carinho, atenção e tempo de qualidade.
+                    </div>
+                </div>
+
+                <!-- Acordeão 2: Pensando em ter um pet -->
+                <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm">
+                    <button @click="openFaq = (openFaq === 2 ? null : 2)" class="w-full px-6 py-5 text-left font-bold text-brand-navy flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="flex items-center gap-3"><i class="fa-solid fa-house-chimney-window text-brand-teal"></i> Pensando em ter um novo animal de estimação?</span>
+                        <i class="fa-solid text-slate-400" :class="openFaq === 2 ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </button>
+                    <div x-show="openFaq === 2" x-collapse class="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                        Antes de adquirir um pet, lembre-se que ele não é um brinquedo e precisará de cuidados por muitos anos. Questionamentos importantes antes de adotar:
+                        <ul class="list-disc list-inside mt-2 space-y-1 text-slate-700">
+                            <li>Todos os familiares estão de acordo com a chegada do pet?</li>
+                            <li>A família possui recursos financeiros para alimentação e saúde veterinária?</li>
+                            <li>Há quem cuide dele durante viagens ou ausências?</li>
+                            <li>As características da espécie/raça são adequadas ao seu estilo de vida?</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa de Localização -->
+    <section id="mapa" class="py-16 bg-white border-t border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <span class="text-xs font-extrabold tracking-widest text-brand-teal uppercase">Como Chegar</span>
+                <h2 class="text-3xl font-extrabold text-brand-navy mt-2">Nossa Localização</h2>
+                <p class="text-slate-600 mt-3">Av. Gal. Carneiro, 2093 - Cerrado, Sorocaba - SP</p>
+            </div>
+            
+            <div class="w-full h-[450px] rounded-3xl overflow-hidden shadow-lg border border-slate-200" data-aos="fade-up" data-aos-delay="100">
+                <!-- iFrame do Google Maps -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.749539345638!2d-47.4764833!3d-23.5055171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c58a946b5a34e5%3A0x6b4fb6c5c0d5a3f!2sAv.%20General%20Carneiro%2C%202093%20-%20Vila%20Lucy%2C%20Sorocaba%20-%20SP%2C%2018043-000!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé e Localização -->
+    <footer class="bg-brand-navy text-slate-300 pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+                
+                <!-- Coluna 1: Logo e Infos -->
+                <div class="md:col-span-5">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-brand-teal text-white rounded-xl flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-heart-pulse text-xl"></i>
+                        </div>
+                        <span class="font-extrabold text-xl text-white tracking-tight">HOSPITAL SAÚDE ANIMAL</span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                        Instituição fundada em Julho de 2011 com o objetivo de dar todo o suporte para atendimento e tratamento adequado aos animais de pequeno porte em Sorocaba.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="tel:1530311066" class="bg-brand-teal hover:bg-brand-tealDark text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all">
+                            <i class="fa-solid fa-phone mr-1"></i> (15) 3031-1066
+                        </a>
+                        <a href="tel:1530167868" class="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all">
+                            <i class="fa-solid fa-phone mr-1"></i> (15) 3016-7868
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Endereço -->
+                <div class="md:col-span-4">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Localização e Contato</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-brand-teal mt-1"></i>
+                            <span>Av. Gal. Carneiro, 2093 - Cerrado<br>CEP 18043-004 - Sorocaba - SP</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-brand-teal"></i>
+                            <span>recepcao@hsaudeanimal.com.br</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-clock text-brand-teal"></i>
+                            <span class="text-white font-semibold">Atendimento 24 Horas / 7 Dias por semana</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Links -->
+                <div class="md:col-span-3">
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Navegação Rápida</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#apresentacao" class="hover:text-white transition-colors">Apresentação</a></li>
+                        <li><a href="#estrutura" class="hover:text-white transition-colors">Estrutura HSA</a></li>
+                        <li><a href="#equipe" class="hover:text-white transition-colors">Corpo Clínico</a></li>
+                        <li><a href="#petshop" class="hover:text-white transition-colors">Pet Shop</a></li>
+                        <li><a href="#guia-pet" class="hover:text-white transition-colors">Guia de Saúde Pet</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Direitos Autorais Atualizado -->
+            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+                <p>&copy; 2026 Hospital Saúde Animal. Todos os direitos reservados. | Demonstração | Sorocaba - SP</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Inicializador de Animações AOS -->
+    <script>
+        AOS.init({
+            once: true,
+            duration: 800,
+            easing: 'ease-in-out'
+        });
+    </script>
+</body>
+</html>
